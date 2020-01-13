@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Golang-day01 | Hexo</title>
+  <title>Apache2-配置CGI | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Golang第一个程序hello world123456package mainimport &quot;fmt&quot;func main()&amp;#123;    fmt.Println(&quot;hello world&quot;)&amp;#125;   包声明 package main  引入包 import &quot;fmt&quot;  函数 func main()  变量  语句 &amp; 表达式  注释  &#x2F;&#x2F; 单行注释">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Golang-day01">
-<meta property="og:url" content="http://yoursite.com/2020/01/12/Golang-day01/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Apache2-配置CGI">
+<meta property="og:url" content="http://yoursite.com/2020/01/13/Apache2-%E9%85%8D%E7%BD%AECGI/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Golang第一个程序hello world123456package mainimport &quot;fmt&quot;func main()&amp;#123;    fmt.Println(&quot;hello world&quot;)&amp;#125;   包声明 package main  引入包 import &quot;fmt&quot;  函数 func main()  变量  语句 &amp; 表达式  注释  &#x2F;&#x2F; 单行注释">
-<meta property="article:published_time" content="2020-01-12T09:29:49.000Z">
-<meta property="article:modified_time" content="2020-01-13T14:06:13.333Z">
+<meta property="article:published_time" content="2020-01-13T14:10:01.000Z">
+<meta property="article:modified_time" content="2020-01-13T14:13:48.763Z">
 <meta property="article:author" content="QAQguowang">
-<meta property="article:tag" content="Golang">
-<meta property="article:tag" content="语言学习">
+<meta property="article:tag" content="操作系统配置">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="服务器配置">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -153,138 +152,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Golang-day01" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Apache2-配置CGI" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Golang-day01
+      Apache2-配置CGI
     </h1>
   
 
         
-        <a href="/2020/01/12/Golang-day01/" class="archive-article-date">
-  	<time datetime="2020-01-12T09:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-12</time>
+        <a href="/2020/01/13/Apache2-%E9%85%8D%E7%BD%AECGI/" class="archive-article-date">
+  	<time datetime="2020-01-13T14:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Golang第一个程序"><a href="#Golang第一个程序" class="headerlink" title="Golang第一个程序"></a>Golang第一个程序</h1><h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a><code>hello world</code></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">"hello world"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>包声明</p>
-<p><code>package main</code></p>
-</li>
-<li><p>引入包</p>
-<p><code>import &quot;fmt&quot;</code></p>
-</li>
-<li><p>函数</p>
-<p><code>func main()</code></p>
-</li>
-<li><p>变量</p>
-</li>
-<li><p>语句 &amp; 表达式</p>
-</li>
-<li><p>注释</p>
-<ul>
-<li><code>//</code> 单行注释</li>
-<li><code>/* ......*/</code> 多行注释</li>
-</ul>
-</li>
-</ul>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>使用<code>go build</code> </p>
-<ol>
-<li>在项目目录下执行 <code>go build</code></li>
-<li>在其他路径下执行<code>go build</code> ，需要在后面加上项目路径(从<code>GOPATH</code>路径写)。</li>
-<li><code>go build -o hello.exe</code></li>
-</ol>
-<p>使用 <code>go run</code>，以执行脚本文件的方式运行。</p>
-<p>使用 <code>go install</code>。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
-<li><code>{</code> 不能单独放在一行，否则代码运行时会产生错误。</li>
-</ul>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h2 id="Golang-的新类型"><a href="#Golang-的新类型" class="headerlink" title="Golang 的新类型"></a><code>Golang</code> 的新类型</h2><ul>
-<li><p>复数</p>
-</li>
-<li><p>错误</p>
-</li>
-<li><p><code>byte</code>和<code>rune</code>类型</p>
-<ul>
-<li><p><code>Go</code>语言的字符有以下两种：</p>
-<ul>
-<li>1.<code>uint8</code>类型，或者叫做<code>byte</code>型，代表了<code>ASCII</code>码的一个字符。</li>
-<li>2.<code>rune</code>类型，代表一个<code>UTF-8</code>字符。</li>
-</ul>
-<p>当需要处理中文、日文或者其他复合字符时，则需要用到<code>rune</code>类型。<code>rune</code>实际上是一个<code>int32</code>。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Golang字符串"><a href="#Golang字符串" class="headerlink" title="Golang字符串"></a><code>Golang</code>字符串</h3><ul>
-<li>字符串常用操作</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">方法</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>len(str)</code></td>
-<td>求长度</td>
-</tr>
-<tr>
-<td align="center"><code>+</code>或<code>fmt.Sprintf</code></td>
-<td>拼接字符串</td>
-</tr>
-<tr>
-<td align="center"><code>strings.Split</code></td>
-<td>分割</td>
-</tr>
-<tr>
-<td align="center"><code>strings.contains</code></td>
-<td>判断是否包含</td>
-</tr>
-<tr>
-<td align="center"><code>strings.HasPrefix</code>,<code>strings.HasSuffix</code></td>
-<td>前缀/后缀判断</td>
-</tr>
-<tr>
-<td align="center"><code>strings.Index()</code>,<code>strings.LastIndex()</code></td>
-<td>子串出现的位置</td>
-</tr>
-<tr>
-<td align="center"><code>strings.Join(a[]strings,sep string)</code></td>
-<td>join操作</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>修改字符串</p>
-<p>要修改字符串，需要现将其转换成<code>[]rune</code>或<code>[]byte</code>，完成后再转换为<code>string</code>，无论那种转换，都会重新分配内存，并复制字节数组。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ChangeString</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	s1 := <span class="string">"big"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//强制类型转换</span></span><br><span class="line">	bytesS1 := []<span class="keyword">byte</span>(s1)</span><br><span class="line">	bytesS1[<span class="number">0</span>] = <span class="string">'p'</span></span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(bytesS1))</span><br><span class="line"></span><br><span class="line">	s2 := <span class="string">"猪头娃"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//强制类型转换</span></span><br><span class="line">	runeS2 := []<span class="keyword">rune</span>(s2)</span><br><span class="line">	runeS2[<span class="number">1</span>] = <span class="string">'猪'</span></span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(runeS2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="Golang类型转换"><a href="#Golang类型转换" class="headerlink" title="Golang类型转换"></a><code>Golang</code>类型转换</h3><ul>
-<li><p><code>Go</code>语言中只有强制类型转换，没有隐式类型转换。该语法只能在两个类型之间支持相互转换时使用。</p>
-</li>
-<li><p>强制类型转换的语法如下：</p>
-<p>​    <code>T(表达式)</code></p>
-<ul>
-<li>其中 <code>T</code>表示要转换的类型。表达式包括变量、复杂算子和函数返回值等。</li>
-</ul>
-</li>
-</ul>
-<h3 id="Golang保留字"><a href="#Golang保留字" class="headerlink" title="Golang保留字"></a><code>Golang</code>保留字</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Golang保留字*/</span></span><br><span class="line"><span class="keyword">break</span> <span class="keyword">default</span> <span class="function"><span class="keyword">func</span> <span class="title">interface</span> <span class="title">select</span> <span class="title">case</span> <span class="title">defer</span> <span class="title">go</span> <span class="title">map</span> <span class="title">struct</span> <span class="title">chan</span></span> </span><br><span class="line"><span class="keyword">else</span> <span class="keyword">goto</span> <span class="keyword">package</span> <span class="keyword">switch</span> <span class="keyword">const</span> <span class="keyword">fallthrough</span> <span class="keyword">if</span> <span class="keyword">range</span> <span class="keyword">type</span> <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">import</span> <span class="keyword">return</span> <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="Golang语法有一些严谨，稍微有些不适应。"><a href="#Golang语法有一些严谨，稍微有些不适应。" class="headerlink" title="Golang语法有一些严谨，稍微有些不适应。"></a><code>Golang</code>语法有一些严谨，稍微有些不适应。</h4>
+        
       
 
       
@@ -318,28 +206,21 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">操作系统配置</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">语言学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">服务器配置</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Golang//" class="article-tag-list-link color2">Golang</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -389,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/12/Golang-day01/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/13/Apache2-%E9%85%8D%E7%BD%AECGI/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -403,15 +284,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/12/Golang-%E8%AF%AD%E6%B3%95-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Golang-语法-1
-        
-      </div>
-    </a>
   
+    <a href="/2020/01/13/VIM-%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">VIM-插件配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
