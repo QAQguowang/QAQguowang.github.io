@@ -175,7 +175,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="地址解析协议"><a href="#地址解析协议" class="headerlink" title="地址解析协议"></a>地址解析协议</h1><h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><ul>
+<li>对于<code>TCP/IP</code>网络，地址解析协议（<code>ARP</code>）提供了一种在IPV4地址和各种网络技术使用的硬件地址之间的映射。</li>
+</ul>
+<h2 id="直接交付和ARP"><a href="#直接交付和ARP" class="headerlink" title="直接交付和ARP"></a>直接交付和ARP</h2><ul>
+<li><p>直接交付发生在一个IP数据报被发送到一个IP地址，而该地址与发送方具有相同IP前缀的情况下。</p>
+</li>
+<li><p>直接交付的流程：</p>
+<ul>
+<li><code>请求主机client</code>要求TCP建立一条到<code>匹配主机server</code>的连接。</li>
+<li>通过向匹配主机server发送一个IPV4数据报，TCP尝试向远程主机发送一个连接请求。</li>
+<li>假设匹配主机server与请求主机client使用的是相同的网络前缀，数据报可以直接发送到这个地址而不经过任何路由器。</li>
+<li>假设以太网兼容地址被用于IPV4子网。ARP便可以将请求主机client的逻辑internet地址转换为对应物理硬件地址。ARP工作于广播网络时，通过链路层将消息交付到请求主机client连接的所有网络设备。</li>
+<li>ARP向所有主机发送一个称为ARP请求的以太网帧，这个过程被称为<strong>链路层广播</strong>。</li>
+<li>同一广播域中的所有系统可以接收ARP请求。如果某个系统使用了请求主机client所请求的IPV4地址，它仅需要响应一个ARP应答，便可以将应答发送给请求主机client，这个应答通常不是广播，而仅是发送给请求主机。</li>
+<li>匹配主机server学习IPV4到MAC地址的映射，并记录在内存中，供以后使用。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2019071710063232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNDUzMjg1,size_16,color_FFFFFF,t_70" alt="img"></p>
+</li>
+</ul>
+<h2 id="ARP缓存和ARP缓存超时"><a href="#ARP缓存和ARP缓存超时" class="headerlink" title="ARP缓存和ARP缓存超时"></a>ARP缓存和ARP缓存超时</h2><ul>
+<li>ARP缓存<ul>
+<li>ARP高效运行的关键是维护每个主机和路由器上的ARP缓存。该缓存使用地址解析为每个接口维护从网络层地址到硬件地址的最新映射。</li>
+</ul>
+</li>
+<li>ARP缓存超时<ul>
+<li>在大多数现实中，完整条目的超时为20分钟，而不完整条目的超时时间为3分钟。</li>
+<li>可以通过命令行手动更改超时时间，超时时间最多维持到设备关机。</li>
+</ul>
+</li>
+</ul>
+<h2 id="ARP帧格式"><a href="#ARP帧格式" class="headerlink" title="ARP帧格式"></a>ARP帧格式</h2><ul>
+<li><p>ARP帧的示意图</p>
+<p><img src="https://pic002.cnblogs.com/images/2012/392443/2012041215590890.jpg" alt="img"></p>
+<ul>
+<li>硬件类型</li>
+<li>协议类型</li>
+<li>硬件地址长度：6</li>
+<li>协议地址长度：4</li>
+<li><code>op</code> ：操作是ARP请求（值为1）、ARP应答（值为2）、RARP请求（值为3）或 RARP应答（值为4）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="ARP相关的攻击"><a href="#ARP相关的攻击" class="headerlink" title="ARP相关的攻击"></a>ARP相关的攻击</h2><ul>
+<li><code>ARP泛洪攻击</code>：通过向网关发送大量ARP报文，导致网关无法正常响应。</li>
+<li><code>ARP欺骗主机攻击</code>：攻击者通过ARP欺骗使得局域网内被攻击主机发送给网关的流量信息实际上都发送给攻击者。</li>
+<li><code>欺骗网关攻击</code>：欺骗网关就是把别的主机发送给网关的数据通过欺骗网关的形式使得这些数据通过网关发送给攻击者。</li>
+<li><code>中间人攻击</code>：中间人攻击是同时欺骗局域网内的主机和网关，局域网中用户的数据和网关的数据会发给同一个攻击者，这样，用户与网关的数据就会泄露。</li>
+<li><code>IP地址冲突攻击</code>：通过对局域网中的物理主机进行扫描，扫描出局域网中的物理主机的MAC地址，然后根据物理主机的MAC进行攻击，导致局域网内的主机产生IP地址冲突，影响用户的网络正常使用。 </li>
+</ul>
+
       
 
       
@@ -183,6 +232,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -368,7 +428,10 @@
 <p>可以在<code>if</code>表达式之前添加一个执行语句，再根据变量值进行判断。</p>
 </li>
 </ul>
-<h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
+<h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><ul>
+<li><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</li>
+</ul>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
 <li><p><code>for</code>循环的初始语句可以被忽略，但是初始语句后的分号必须要写。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ForDemo1</span><span class="params">()</span></span> &#123;</span><br><span class="line">    i := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">        fmt.Println(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -864,6 +927,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
             
             <div class="clearfix"></div>

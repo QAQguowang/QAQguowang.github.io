@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Golang 语法1数据类型变量声明 变量声明一般使用 var关键字： var indetifier1,indetifier2 type ，可以一次声明多个变量。  指定变量类型，如果没有初始化，则默认变量为零值 12var v_name v_type &#x2F;&#x2F;没有进行初始化，所以此时v_name的值为0v_name &#x3D; value   数值类型为0。  布尔类型为false  字符串为 “ ” （空">
 <meta property="article:published_time" content="2020-01-12T09:58:22.000Z">
-<meta property="article:modified_time" content="2020-01-13T08:12:52.415Z">
+<meta property="article:modified_time" content="2020-01-13T13:17:28.076Z">
 <meta property="article:author" content="QAQguowang">
 <meta property="article:tag" content="Golang">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,10 @@
 <p>可以在<code>if</code>表达式之前添加一个执行语句，再根据变量值进行判断。</p>
 </li>
 </ul>
-<h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
+<h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><ul>
+<li><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</li>
+</ul>
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
 <li><p><code>for</code>循环的初始语句可以被忽略，但是初始语句后的分号必须要写。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ForDemo1</span><span class="params">()</span></span> &#123;</span><br><span class="line">    i := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">        fmt.Println(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -557,6 +560,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Golang</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
             
             <div class="clearfix"></div>
