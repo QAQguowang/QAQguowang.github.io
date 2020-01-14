@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Golang 语法1数据类型变量声明 变量声明一般使用 var关键字： var indetifier1,indetifier2 type ，可以一次声明多个变量。  指定变量类型，如果没有初始化，则默认变量为零值 12var v_name v_type &#x2F;&#x2F;没有进行初始化，所以此时v_name的值为0v_name &#x3D; value   数值类型为0。  布尔类型为false  字符串为 “ ” （空">
 <meta property="article:published_time" content="2020-01-12T09:58:22.000Z">
-<meta property="article:modified_time" content="2020-01-13T14:06:01.689Z">
+<meta property="article:modified_time" content="2020-01-14T04:49:18.978Z">
 <meta property="article:author" content="QAQguowang">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="语言学习">
@@ -232,7 +232,17 @@
 </li>
 </ul>
 <h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><ul>
-<li><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</li>
+<li><p><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</p>
+</li>
+<li><p>双层嵌套循环退出：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Gotodemo1</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> breakFlag <span class="keyword">bool</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">				<span class="comment">//内层终止条件</span></span><br><span class="line">				breakFlag = <span class="literal">true</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//外层for循环</span></span><br><span class="line">		<span class="keyword">if</span> breakFlag &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>goto</code>替换：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Gotodemo2</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++&#123;</span><br><span class="line">			<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++&#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="keyword">goto</span> breakTag</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">	<span class="comment">//goto 标签</span></span><br><span class="line">	breakTag:</span><br><span class="line">		fmt.Println(<span class="string">"循环结束！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
 <li><p><code>for</code>循环的初始语句可以被忽略，但是初始语句后的分号必须要写。</p>
@@ -250,6 +260,22 @@
 <li><code>map</code>返回键和值。</li>
 <li>通道只返回通道内的值。</li>
 </ul>
+</li>
+</ul>
+<h4 id="break"><a href="#break" class="headerlink" title="break"></a><code>break</code></h4><ul>
+<li><p>在<code>Go</code>中break的用法更加灵活，break语句可以在语句后面添加标签，表示退出某个标签对应的代码块，标签要求必须定义在对应的<code>for</code>、<code>switch</code>和<code>select</code>的代码块上。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//break新用法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Breakdemo</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	BREAKDEMO:</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			<span class="keyword">for</span> j:= <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="comment">//帮助break跳出多层循环</span></span><br><span class="line">					<span class="keyword">break</span> BREAKDEMO</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">"..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a><code>continue</code></h4><ul>
+<li><p><code>continue</code>语句可以结束当前循环，开始下一次的循环迭代过程，仅限在<code>for</code>循环内使用。</p>
+</li>
+<li><p>在<code>continue</code>语句后面添加标签时，表示开始标签对应的循环。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//continue</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Continuedemo</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	forloop1:</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &amp;&amp; i == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="keyword">continue</span> forloop1</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">//打印不会出现 2-2</span></span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a><code>switch</code></h4><ul>

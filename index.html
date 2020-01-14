@@ -149,6 +149,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Golang-语法-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/Golang-%E8%AF%AD%E6%B3%95-3/">Golang-语法-3</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/14/Golang-%E8%AF%AD%E6%B3%95-3/" class="archive-article-date">
+  	<time datetime="2020-01-14T06:57:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Golang</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">语言学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/14/Golang-%E8%AF%AD%E6%B3%95-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Apache2-配置CGI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -453,7 +530,190 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Golang语法2"><a href="#Golang语法2" class="headerlink" title="Golang语法2"></a><code>Golang</code>语法2</h2><h3 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a><code>Array</code>(数组)</h3><ul>
+<li><p>数组的定义：<code>var 数组变量名 [元素数量] T</code></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a [<span class="number">5</span>] <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> b [<span class="number">3</span>] <span class="keyword">int</span> </span><br><span class="line"><span class="comment">// a 和 b 是不同类型，因为它们的数组长度不同。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数组的长度必须是常量，并且长度是数组类型的一部分，一旦定义，长度不能改变。</li>
+</ul>
+</li>
+<li><p>数组初始化</p>
+<ul>
+<li><p>方法一：初始化数组时可以用初始化列表来设置数组元素的值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ArrayDemo1</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>] <span class="keyword">int</span> <span class="comment">//数组初始化为int类型的零值</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [<span class="number">3</span>] <span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>&#125; <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	<span class="keyword">var</span> cityArray = [<span class="number">3</span>] <span class="keyword">string</span> &#123;<span class="string">"北京"</span>,<span class="string">"上海"</span>,<span class="string">"深圳"</span>&#125; <span class="comment">//使用指定的初始值完成初始化</span></span><br><span class="line">	fmt.Println(testArray)</span><br><span class="line">	fmt.Println(numArray)</span><br><span class="line">	fmt.Println(cityArray)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：让编译器根据数组初始值的个数自主推导数组的长度。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ArrayDemo2</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> testArray [<span class="number">3</span>] <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> numArray = [...] <span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> cityArray = [...] <span class="keyword">string</span> &#123;<span class="string">"西安"</span>,<span class="string">"上海"</span>,<span class="string">"杭州"</span>&#125;</span><br><span class="line">	fmt.Println(testArray)</span><br><span class="line">	fmt.Println(numArray)</span><br><span class="line">	fmt.Printf(<span class="string">"numArray 类型: %T\n"</span>,numArray)</span><br><span class="line">	fmt.Println(cityArray)</span><br><span class="line">	fmt.Printf(<span class="string">"cityArray 类型: %T\n"</span>,cityArray)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三：使用指定索引值的方式来初始化数组。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ArrayDemo3</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	a := [...] <span class="keyword">int</span> &#123;<span class="number">1</span> : <span class="number">1</span>,<span class="number">3</span> : <span class="number">5</span>&#125;</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">	fmt.Printf(<span class="string">"a 类型: %T\n"</span>,a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>数组的遍历</p>
+<ul>
+<li><p><code>for</code>循环遍历</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DisplayDemo1</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	cityArray := [...] <span class="keyword">string</span> &#123;<span class="string">"北京"</span>,<span class="string">"上海"</span>,<span class="string">"杭州"</span>&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(cityArray); i++ &#123;</span><br><span class="line">		fmt.Println(cityArray[i])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>for range</code>遍历</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DisplayDemo2</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	cityArray := [...] <span class="keyword">string</span> &#123;<span class="string">"北京"</span>,<span class="string">"上海"</span>,<span class="string">"杭州"</span>&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> index, value := <span class="keyword">range</span> cityArray &#123;</span><br><span class="line">		fmt.Println(index,value)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li><p>多维数组</p>
+<ul>
+<li><p>二维数组的定义</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ArrayDemo4</span><span class="params">()</span></span> &#123;</span><br><span class="line">    cityArray := [<span class="number">3</span>][<span class="number">2</span>] <span class="keyword">string</span> &#123;</span><br><span class="line">        &#123;<span class="string">"陕西"</span>,<span class="string">"西安"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广州"</span>,<span class="string">"广东"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广西"</span>,<span class="string">"桂林"</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fmt.Println(cityArray[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>二维数组的遍历</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DisplayDemo3</span><span class="params">()</span></span> &#123;</span><br><span class="line">     cityArray := [<span class="number">3</span>][<span class="number">2</span>] <span class="keyword">string</span> &#123;</span><br><span class="line">        &#123;<span class="string">"陕西"</span>,<span class="string">"西安"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广州"</span>,<span class="string">"广东"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广西"</span>,<span class="string">"桂林"</span>&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> _, v1 := <span class="keyword">range</span> cityArray &#123;</span><br><span class="line">        <span class="keyword">for</span> _, v2 := <span class="keyword">range</span> v1 &#123;</span><br><span class="line">            fmt.Printf(<span class="string">"%s\t"</span>,v2)</span><br><span class="line">        &#125;</span><br><span class="line">        fmt.Println()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：多维数组只有第一层可以使用 <code>...</code>来让编译器推导数组长度。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//支持写法</span></span><br><span class="line">a := [...][<span class="number">2</span>] <span class="keyword">string</span> &#123;</span><br><span class="line">        &#123;<span class="string">"陕西"</span>,<span class="string">"西安"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广州"</span>,<span class="string">"广东"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广西"</span>,<span class="string">"桂林"</span>&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不支持写法</span></span><br><span class="line">a := [<span class="number">3</span>][...] <span class="keyword">string</span> &#123;</span><br><span class="line">        &#123;<span class="string">"陕西"</span>,<span class="string">"西安"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广州"</span>,<span class="string">"广东"</span>&#125;,</span><br><span class="line">        &#123;<span class="string">"广西"</span>,<span class="string">"桂林"</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li><p>数组是值类型</p>
+<ul>
+<li><p>数组是值类型，赋值和传参会复制整个数组。因此改变副本的值，不会改变本身的值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ModifyArray1</span><span class="params">(x [3]<span class="keyword">int</span>)</span></span>&#123;</span><br><span class="line">	x[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ModifyArray2</span><span class="params">(x [3][2]<span class="keyword">int</span>)</span></span>  &#123;</span><br><span class="line">	x[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	a := [<span class="number">3</span>]<span class="keyword">int</span> &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;</span><br><span class="line">	arrayDemo.ModifyArray1(a)</span><br><span class="line">    fmt.Println(a) <span class="comment">//输出 [10,20,30]</span></span><br><span class="line"></span><br><span class="line">	b := [<span class="number">3</span>][<span class="number">2</span>]<span class="keyword">int</span> &#123;</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">		&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	arrayDemo.ModifyArray2(b)</span><br><span class="line">	fmt.Println(b) <span class="comment">//输出[[1 1] [1 1] [1 1]]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组支持 <code>“==”</code> 、<code>“!=”</code>操作符。</p>
+</li>
+<li><p><code>[n]*T</code>表示指针数组 ，<code>*[n]T</code>表示数组指针</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Slice-切片"><a href="#Slice-切片" class="headerlink" title="Slice(切片)"></a><code>Slice</code>(切片)</h3><ul>
+<li><p>切片的定义</p>
+<ul>
+<li><p>切片是一个拥有相同类型元素的可变长的序列。它是基于数组的一层封装。它非常灵活，支持自动扩容。</p>
+</li>
+<li><p>切片是一个引用类型，它的内部包含地址、长度和容量。切片一般用于快速地操作一块数据集合。</p>
+</li>
+<li><p>声明切片类型的基本语法：<code>var name []T</code> ，<code>name</code>表示变量名，<code>T</code>表示切片中的元素类型。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SliceDemo1</span><span class="params">()</span></span>  &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> a []<span class="keyword">string</span> <span class="comment">//声明一个字符串切片</span></span><br><span class="line">	<span class="keyword">var</span> b = []<span class="keyword">int</span>&#123;&#125;  <span class="comment">//声明一个整形切片并初始化</span></span><br><span class="line">	<span class="keyword">var</span> c = []<span class="keyword">bool</span>&#123;<span class="literal">false</span>,<span class="literal">true</span>&#125; <span class="comment">//声明一个布尔型切片并初始化</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>切片的长度和容量</p>
+<ul>
+<li>可以通过<code>len()</code>函数求切片的长度，通过<code>cap()</code>函数求切片的容量。</li>
+</ul>
+</li>
+<li><p>基于数组定义切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SliceDmeo2</span><span class="params">()</span></span>  &#123;</span><br><span class="line"></span><br><span class="line">	a := [<span class="number">5</span>]<span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">	b := a[<span class="number">1</span>:<span class="number">4</span>]</span><br><span class="line">	fmt.Println(b)</span><br><span class="line">	fmt.Printf(<span class="string">"type of b:%T\n"</span>,b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切片再切片</p>
+<ul>
+<li><p>通过切片得到切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SliceDemo3</span><span class="params">()</span></span>  &#123;</span><br><span class="line"></span><br><span class="line">	a := [...]<span class="keyword">string</span> &#123;<span class="string">"北京"</span>,<span class="string">"上海"</span>,<span class="string">"广东"</span>,<span class="string">"重庆"</span>&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"a:%v type:%T len:%d  cap%d\n"</span>,a,a,<span class="built_in">len</span>(a),<span class="built_in">cap</span>(a))</span><br><span class="line">	b := a[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">	fmt.Printf(<span class="string">"b:%v type:%T len:%d  cap:%d\n"</span>,b,b,<span class="built_in">len</span>(b),<span class="built_in">cap</span>(b))</span><br><span class="line">	c := b[<span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line">	fmt.Printf(<span class="string">"c:%v type:%T len:%d  cap:%d\n"</span>,c,c,<span class="built_in">len</span>(c),<span class="built_in">cap</span>(c))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对切片在切片时，索引不能超过原有数组的长度，否则会发生越界。</p>
+</li>
+</ul>
+</li>
+<li><p>使用<code>make()函数</code>构造切片</p>
+<ul>
+<li><p>如果需要动态创建一个切片，我们就需要使用<code>make()函数</code>： <code>make([ ]T, size, cap)</code></p>
+<ul>
+<li>T：切片的类型</li>
+<li>size:切片中元素的数量</li>
+<li>cap:切片容量</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SliceDemo4</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	a := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">2</span>,<span class="number">10</span>)</span><br><span class="line">	fmt.Println(a)</span><br><span class="line">	fmt.Println(<span class="built_in">len</span>(a))</span><br><span class="line">	fmt.Println(<span class="built_in">cap</span>(a))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>切片的本质</p>
+<ul>
+<li>切片的本质就是对底层数组的封装，它包含了三个信息：底层数组的指针、切片长度和切片容量。</li>
+<li>数组指针指向切片开始的位置，长度为切片开始到切片结束的位置，容量为切片开始到数组结束的位置。</li>
+</ul>
+</li>
+<li><p>切片不能直接比较</p>
+<ul>
+<li><p>切片不能直接比较，不能使用<code>==</code>来判断两个切片是否含有全部相等元素。切片唯一合法的比较操作是和<code>nli</code>比较。一个<code>nli</code>值的切片并没有底层数组，一个<code>nli</code>值的切片的长度和容量都是0。但是不能说一个长度和容量都是0的切片一定是<code>nli</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 []<span class="keyword">int</span>	<span class="comment">//len(s1)=0;cap(s1)=0;s1==nli</span></span><br><span class="line">s2 := []<span class="keyword">int</span>&#123;&#125;	<span class="comment">//len(s2)=0;cap(s2)=0;s2!=nli</span></span><br><span class="line">s3 := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">0</span>)	<span class="comment">//len(s3)=0;cap(s3)=0;s3!=nli</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>切片的赋值拷贝</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">SliceDemo5</span><span class="params">()</span></span>  &#123;</span><br><span class="line">s1 := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">3</span>)</span><br><span class="line"> 	s2 := s1</span><br><span class="line">s2[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line"> 	fmt.Println(s1)</span><br><span class="line"> 	fmt.Println(s2)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>​                拷贝前后，两个变量贡献底层数组，对一个切片修改内容，会影响另一个切片的内容。</p>
+<ul>
+<li><p>切片遍历</p>
+<ul>
+<li><p>切片变量的方式和数组是一致的，支持索引遍历和<code>for range</code>遍历。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    s := []<span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</span><br><span class="line">        fmt.Println(i,s[i])</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> index,value := <span class="keyword">range</span> s &#123;</span><br><span class="line">        fmt.Println(index,value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>append()</code>方法为切片添加元素</p>
+<ul>
+<li><p>Go语言的内建函数<code>append()</code>可以为切片动态添加元素，每个切片会指向一个底层数组，每个数组的容量够用就会添加新增元素。当底层数组不能容纳新增元素时，切片就会自动按照一定策略进行扩容，此时该切片指向底层数组就会更换。扩容操作往往发生在<code>append()</code>函数调用时。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SliceDemo6</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> numSlice []<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		numSlice = <span class="built_in">append</span>(numSlice, i)</span><br><span class="line">		fmt.Printf(<span class="string">"%v  len:%d  cap:%d  ptr:%p\n"</span>,numSlice,<span class="built_in">len</span>(numSlice),<span class="built_in">cap</span>(numSlice),numSlice)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">0</span>]  <span class="built_in">len</span>:<span class="number">1</span>  <span class="built_in">cap</span>:<span class="number">1</span>  ptr:<span class="number">0xc0000200c0</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span>]  <span class="built_in">len</span>:<span class="number">2</span>  <span class="built_in">cap</span>:<span class="number">2</span>  ptr:<span class="number">0xc000020100</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span>]  <span class="built_in">len</span>:<span class="number">3</span>  <span class="built_in">cap</span>:<span class="number">4</span>  ptr:<span class="number">0xc000016440</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span>]  <span class="built_in">len</span>:<span class="number">4</span>  <span class="built_in">cap</span>:<span class="number">4</span>  ptr:<span class="number">0xc000016440</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>]  <span class="built_in">len</span>:<span class="number">5</span>  <span class="built_in">cap</span>:<span class="number">8</span>  ptr:<span class="number">0xc00001c200</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span>]  <span class="built_in">len</span>:<span class="number">6</span>  <span class="built_in">cap</span>:<span class="number">8</span>  ptr:<span class="number">0xc00001c200</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>]  <span class="built_in">len</span>:<span class="number">7</span>  <span class="built_in">cap</span>:<span class="number">8</span>  ptr:<span class="number">0xc00001c200</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span>]  <span class="built_in">len</span>:<span class="number">8</span>  <span class="built_in">cap</span>:<span class="number">8</span>  ptr:<span class="number">0xc00001c200</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span>]  <span class="built_in">len</span>:<span class="number">9</span>  <span class="built_in">cap</span>:<span class="number">16</span>  ptr:<span class="number">0xc00008c080</span></span><br><span class="line">[<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>]  <span class="built_in">len</span>:<span class="number">10</span>  <span class="built_in">cap</span>:<span class="number">16</span>  ptr:<span class="number">0xc00008c080</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面结果可以看出：</p>
+<ul>
+<li><code>append ()</code>函数将元素追加到切片的最后并返回该切片。</li>
+<li>切片numSlice的容量按照1,2,4,8这样的规则进行扩容，每次扩容后都是扩容前的两倍。</li>
+</ul>
+</li>
+<li><p><code>append()</code>函数还支持一次追加多个元素。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> citySlice []<span class="keyword">string</span></span><br><span class="line">citySlice = citySlice.<span class="built_in">append</span>(citySlice,<span class="string">"北京"</span>,<span class="string">"上海"</span>)</span><br><span class="line">a := []<span class="keyword">string</span> &#123;<span class="string">"成都"</span>,<span class="string">"重庆"</span>&#125;</span><br><span class="line"><span class="comment">//追加切片</span></span><br><span class="line">citySlice = citySlice.<span class="built_in">append</span>(citySlice,a...)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>切片的扩容策略</p>
+<ul>
+<li>通过<code>$GOROOT/src/runtime/slice.go</code>源码查看。</li>
+<li>切片扩容会根据切片中元素的类型不同而做处理。</li>
+</ul>
+</li>
+<li><p>使用<code>copy()</code>函数复制切片</p>
+<ul>
+<li><p><code>copy()</code>函数可以迅速将一个切片的数据复制到另一个切片空间。</p>
+<p><code>copy(destSlice,srcSlice []T)</code></p>
+<p>​    1.<code>destSlice</code>: 目标切片</p>
+<p>​    2.<code>srcSlice</code>：数据来源切片  </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    a := []<span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">    c := <span class="built_in">make</span>([]<span class="keyword">int</span>,<span class="number">5</span>,<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">copy</span>(c,a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>从切片中删除元素</p>
+<ul>
+<li><p><code>Go</code>没有删除切片元素的方法，可以使用切片本身的特性来删除元素。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    a := []<span class="keyword">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//删除索引为2的元素</span></span><br><span class="line">    a = <span class="built_in">append</span>(a[:<span class="number">2</span>],a[<span class="number">3</span>:]...)</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>要从切片中删除索引为<code>index</code>的元素，操作方法是<code>a = append(a[:index],a[index+1]...)</code></p>
+</li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -589,7 +849,17 @@
 </li>
 </ul>
 <h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><code>goto</code></h4><ul>
-<li><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</li>
+<li><p><code>goto</code>语句通过标签进行代码间的无条件跳转。<code>goto</code>语句可以在快速跳出循环、避免重复退出上有一定帮助。<code>Go</code>语言中使用<code>goto</code>语句能简化一些代码的实现过程。</p>
+</li>
+<li><p>双层嵌套循环退出：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Gotodemo1</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> breakFlag <span class="keyword">bool</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">				<span class="comment">//内层终止条件</span></span><br><span class="line">				breakFlag = <span class="literal">true</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//外层for循环</span></span><br><span class="line">		<span class="keyword">if</span> breakFlag &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>goto</code>替换：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Gotodemo2</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++&#123;</span><br><span class="line">			<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++&#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="keyword">goto</span> breakTag</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j);</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">	<span class="comment">//goto 标签</span></span><br><span class="line">	breakTag:</span><br><span class="line">		fmt.Println(<span class="string">"循环结束！"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ul>
 <h4 id="for"><a href="#for" class="headerlink" title="for"></a><code>for</code></h4><ul>
 <li><p><code>for</code>循环的初始语句可以被忽略，但是初始语句后的分号必须要写。</p>
@@ -607,6 +877,22 @@
 <li><code>map</code>返回键和值。</li>
 <li>通道只返回通道内的值。</li>
 </ul>
+</li>
+</ul>
+<h4 id="break"><a href="#break" class="headerlink" title="break"></a><code>break</code></h4><ul>
+<li><p>在<code>Go</code>中break的用法更加灵活，break语句可以在语句后面添加标签，表示退出某个标签对应的代码块，标签要求必须定义在对应的<code>for</code>、<code>switch</code>和<code>select</code>的代码块上。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//break新用法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Breakdemo</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	BREAKDEMO:</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			<span class="keyword">for</span> j:= <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="comment">//帮助break跳出多层循环</span></span><br><span class="line">					<span class="keyword">break</span> BREAKDEMO</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">"..."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a><code>continue</code></h4><ul>
+<li><p><code>continue</code>语句可以结束当前循环，开始下一次的循环迭代过程，仅限在<code>for</code>循环内使用。</p>
+</li>
+<li><p>在<code>continue</code>语句后面添加标签时，表示开始标签对应的循环。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//continue</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Continuedemo</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	forloop1:</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ &#123;</span><br><span class="line">				<span class="keyword">if</span> j == <span class="number">2</span> &amp;&amp; i == <span class="number">2</span> &#123;</span><br><span class="line">					<span class="keyword">continue</span> forloop1</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">//打印不会出现 2-2</span></span><br><span class="line">				fmt.Printf(<span class="string">"%v-%v\n"</span>,i,j)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
 <h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a><code>switch</code></h4><ul>
