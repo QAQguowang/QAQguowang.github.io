@@ -8,12 +8,14 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Golang-语法-3 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="map map是一种无序的基于key-value的数据结构，Go语言中的map是引用类型，必须初始化了才能使用。  map的定义 1map[keyType]valueType   keyType ：表示键的类型 valueType :表示值的类型   map类型的默认初始值为nil，需要使用make()函数来分配内存。 1make(map[keyType]valueType,[cap])  其中c">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Golang-语法-3">
 <meta property="og:url" content="http://yoursite.com/2020/01/14/Golang-%E8%AF%AD%E6%B3%95-3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="map map是一种无序的基于key-value的数据结构，Go语言中的map是引用类型，必须初始化了才能使用。  map的定义 1map[keyType]valueType   keyType ：表示键的类型 valueType :表示值的类型   map类型的默认初始值为nil，需要使用make()函数来分配内存。 1make(map[keyType]valueType,[cap])  其中c">
 <meta property="article:published_time" content="2020-01-14T06:57:06.000Z">
-<meta property="article:modified_time" content="2020-01-14T06:59:43.483Z">
+<meta property="article:modified_time" content="2020-01-17T04:58:31.301Z">
 <meta property="article:author" content="QAQguowang">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="语言学习">
@@ -171,7 +173,240 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><ul>
+<li><p><code>map</code>是一种无序的基于<code>key-value</code>的数据结构，Go语言中的map是引用类型，必须初始化了才能使用。</p>
+</li>
+<li><p>map的定义</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">map</span>[keyType]valueType</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>keyType ：表示键的类型</li>
+<li>valueType :表示值的类型</li>
+</ul>
+</li>
+<li><p>map类型的默认初始值为nil，需要使用<code>make()</code>函数来分配内存。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span>(<span class="keyword">map</span>[keyType]valueType,[<span class="built_in">cap</span>])</span><br></pre></td></tr></table></figure>
+
+<p>其中cap表示map的容量。</p>
+</li>
+<li><p>map的基本使用</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    scoreMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>,<span class="number">8</span>)</span><br><span class="line">    scoreMap[<span class="string">"张三"</span>] = <span class="number">90</span></span><br><span class="line">    scoreMap[<span class="string">"李四"</span>] = <span class="number">100</span></span><br><span class="line">    fmt.Println(scoreMap)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map也支持在声明的时候填充元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    userInfo := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span> &#123;</span><br><span class="line">        <span class="string">"username"</span> : <span class="string">"张三"</span>,</span><br><span class="line">        <span class="string">"password"</span> : <span class="string">"123456"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fmt.Println(userInfo)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断某个键是否存在</p>
+<ul>
+<li><p>Go语言中判断map中的键是否存在的特殊写法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value, ok := <span class="keyword">map</span>[key]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>例如</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	scoreMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>,<span class="number">8</span>)</span><br><span class="line">    scoreMap[<span class="string">"张三"</span>] = <span class="number">90</span></span><br><span class="line">    scoreMap[<span class="string">"李四"</span>] = <span class="number">100</span></span><br><span class="line">    </span><br><span class="line">    v, ok := scoreMap[<span class="string">"张三"</span>]</span><br><span class="line">    <span class="keyword">if</span> ok &#123;</span><br><span class="line">        fmt.Println(v)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">"查无此人"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>map的遍历</p>
+<ul>
+<li><p>Go语言中使用<code>for range</code>进行map的遍历。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    scoreMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>,<span class="number">8</span>)</span><br><span class="line">    scoreMap[<span class="string">"张三"</span>] = <span class="number">90</span></span><br><span class="line">    scoreMap[<span class="string">"李四"</span>] = <span class="number">100</span></span><br><span class="line">	scoreMap[<span class="string">"王五"</span>] = <span class="number">60</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> k, v := <span class="keyword">range</span> scoreMap &#123;</span><br><span class="line">        fmt.Println(k,v)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果只想遍历key</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    for k := range scoreMap &#123;</span></span><br><span class="line"><span class="comment">    	fmt.Println(k)</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历map时的元素顺序与添加键值对的顺序无关。</p>
+</li>
+</ul>
+</li>
+<li><p>使用delete函数删除键值对</p>
+<ul>
+<li><p>使用<code>delete()</code>内建函数从map中删除一组键值对</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">delete</span>(<span class="keyword">map</span>,key)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>map表示要删除键值对的map</li>
+<li>key表示要删除键值对的值</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    scoreMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>,<span class="number">8</span>)</span><br><span class="line">    scoreMap[<span class="string">"张三"</span>] = <span class="number">90</span></span><br><span class="line">    scoreMap[<span class="string">"李四"</span>] = <span class="number">100</span></span><br><span class="line">	scoreMap[<span class="string">"王五"</span>] = <span class="number">60</span></span><br><span class="line">    <span class="built_in">delete</span>(scoreMap,<span class="string">"张三"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> k, v := <span class="keyword">range</span> scoreMap &#123;</span><br><span class="line">        fmt.Println(k,v)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>按照指定顺序遍历map</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    rand.Seed(time.Now().UnixNano()) <span class="comment">//初始化随机种子</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> scoreMap = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>, <span class="number">200</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">100</span>; i++ &#123;</span><br><span class="line">        key := fmt.Sprintf(<span class="string">"stu%02d"</span>,i)</span><br><span class="line">        value := rand.Intn(<span class="number">100</span>)</span><br><span class="line">        scoreMap[key] = value</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//取出map中的所有ley存入切片</span></span><br><span class="line">    keys := <span class="built_in">make</span>([]<span class="keyword">string</span>,<span class="number">0</span>,<span class="number">200</span>)</span><br><span class="line">    <span class="keyword">for</span> key := <span class="keyword">range</span> scoreMap &#123;</span><br><span class="line">        keys = <span class="built_in">append</span>(keys,key)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//对切片进行排序</span></span><br><span class="line">    sort.Strings(keys)</span><br><span class="line">    <span class="comment">//按照排序后的key进行遍历</span></span><br><span class="line">    <span class="keyword">for</span> _, key := <span class="keyword">range</span> keys &#123;</span><br><span class="line">        fmt.Println(key,scoreMap[key])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>元素为map类型切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//切片中的元素为map类型</span></span><br><span class="line">    <span class="keyword">var</span> mapSlice = <span class="built_in">make</span>([]<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>,<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"index:%d value:%v\n"</span>,index,value)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fmt.Println(<span class="string">"after init"</span>)</span><br><span class="line">    <span class="comment">//对切片元素进行初始化</span></span><br><span class="line">    <span class="comment">//初始化了切片的第一个元素，第一个元素是map类型，并被初始化为10个[string]string 类型的键值对</span></span><br><span class="line">    mapSlice[<span class="number">0</span>] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>,<span class="number">10</span>)</span><br><span class="line">    mapSlice[<span class="number">0</span>][<span class="string">"name"</span>] = <span class="string">"张三"</span></span><br><span class="line">    mapSlice[<span class="number">0</span>][<span class="string">"password"</span>] = <span class="string">"123456"</span></span><br><span class="line">    mapSlice[<span class="number">0</span>][<span class="string">"address"</span>] = <span class="string">"沙河"</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> index, value := <span class="keyword">range</span> mapSlice &#123;</span><br><span class="line">        fmt.Printf(<span class="string">"index:%d value:%v\n"</span>,index,value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>值为切片类型的map</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//map中值为切片类型</span></span><br><span class="line">    <span class="keyword">var</span> sliceMap = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">string</span>,<span class="number">3</span>)</span><br><span class="line">    fmt.Println(sliceMap)</span><br><span class="line">    fmt.Println(<span class="string">"after init"</span>)</span><br><span class="line">    key := <span class="string">"中国"</span></span><br><span class="line">    value, ok := sliceMap[key]</span><br><span class="line">    <span class="keyword">if</span> !ok &#123;</span><br><span class="line">        value = <span class="built_in">make</span>([]<span class="keyword">string</span>,<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    value = <span class="built_in">append</span>(value,<span class="string">"北京"</span>,<span class="string">"上海"</span>)</span><br><span class="line">    sliceMap[key] = value</span><br><span class="line">    fmt.Println(sliceMap)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li><p>函数定义</p>
+</li>
+<li><p>参数</p>
+<ul>
+<li><p>类型简写</p>
+</li>
+<li><p>可变参数</p>
+<ul>
+<li><p>可变参数是指函数的参数数量不固定。Go语言中的可变参数通过在参数名后加<code>...</code>来标识。</p>
+</li>
+<li><p>可变参数通常要做函数的最后一个参数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">intSum</span><span class="params">(x ...<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    fmt.Println(x)</span><br><span class="line">    sum := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _, v := <span class="keyword">range</span> x &#123;</span><br><span class="line">        sum += v</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">ret1 := intSum()</span><br><span class="line">ret2 := intSum(<span class="number">10</span>)</span><br><span class="line">ret3 := intSum(<span class="number">10</span>,<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>固定参数搭配可变参数使用</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回值</p>
+<ul>
+<li><p>多返回值</p>
+<ul>
+<li><p>Go语言中函数支持多返回值，函数如果有多个返回值时在函数定义时必须使用<code>()</code>将所有的返回值包裹起来。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calc</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    sum := x + y</span><br><span class="line">    sub := x - y</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum, sub</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>返回值命名</p>
+<ul>
+<li><p>函数定义时可以给返回值命名，并在函数体中直接使用这些变量，最后通过<code>return</code>关键字返回。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calc</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="params">(sum, sub <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    sum := x + y</span><br><span class="line">    sub := x - y</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>变量作用域</p>
+<ul>
+<li>全局变量</li>
+<li>局部变量</li>
+</ul>
+</li>
+<li><p>函数类型与变量</p>
+<ul>
+<li><p>定义函数类型</p>
+<ul>
+<li><p>可以使用<code>type</code>类型来定义一个函数类型：<code>type calculation func(int,int)int</code>，定义了一个<code>calculation</code>类型，它是一种函数类型，这种函数接收两个<code>int</code>类型的参数并且返回一个<code>int</code>类型的返回值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c calculation</span><br><span class="line">c = add</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>函数类型变量</li>
+</ul>
+<ul>
+<li><p>函数作为参数</p>
+<ul>
+<li><p>函数可以作为参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calc</span><span class="params">(x, y <span class="keyword">int</span>, op <span class="keyword">func</span>(<span class="keyword">int</span>, <span class="keyword">int</span>)</span> <span class="title">int</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> op(x,y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    ret2 := calc(<span class="number">10</span>,<span class="number">20</span>,add)</span><br><span class="line">    fmt.Println(ret2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>函数作为返回值</p>
+<ul>
+<li><p>函数也可以作为返回值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">do</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">func</span>(<span class="keyword">int</span>,<span class="keyword">int</span>)</span> <span class="title">int</span>, <span class="title">error</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> s &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">        	<span class="keyword">return</span> add,<span class="literal">nil</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">"-"</span>:</span><br><span class="line">        	<span class="keyword">return</span> sub,<span class="literal">nil</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">        	err := erros.New(<span class="string">"无法识别的操作符"</span>)</span><br><span class="line">        	<span class="keyword">return</span> <span class="literal">nil</span>,err</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>匿名函数和闭包</p>
+<ul>
+<li><p>匿名函数</p>
+<ul>
+<li><p>函数还可以作为返回值，但是在Go语言中函数内部不能再像之前那样定义函数，只能定义匿名函数。匿名函数就是没有函数名的函数，匿名函数的定义如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(参数)</span><span class="params">(返回值)</span></span> &#123;</span><br><span class="line">    函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名函数因为没有函数名，所以没办法像普通函数那样调用，所以匿名函数需要保存到某个变量或者作为立即将执行函数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">//将匿名函数保存到变量</span></span><br><span class="line">    add := <span class="function"><span class="keyword">func</span><span class="params">(x, y <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">        fmt.Println(x + y)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    add(<span class="number">10</span>, <span class="number">20</span>) <span class="comment">//通过变量调用匿名函数</span></span><br><span class="line">    <span class="comment">//自执行函数:匿名函数定义完加()直接执行</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span><span class="params">(x, y <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">        fmt.Println(x + y)</span><br><span class="line">    &#125;(<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匿名函数多用于实现回调函数和闭包。</p>
+</li>
+</ul>
+</li>
+<li><p>闭包</p>
+<ul>
+<li>闭包指的是一个函数和与其相关的引用环境组合而成的实体。简单来说，<code>闭包 = 函数 + 引用环境</code>。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line">    </span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//闭包</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">adder</span><span class="params">()</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">int</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">		x += y</span><br><span class="line">		<span class="keyword">return</span> x</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="comment">//将adder()函数的返回值赋给 f</span></span><br><span class="line">	<span class="keyword">var</span> f = adder()</span><br><span class="line">	fmt.Println(f(<span class="number">10</span>)) <span class="comment">//相当于调用了adder()函数内的匿名函数 10</span></span><br><span class="line">	fmt.Println(f(<span class="number">20</span>)) <span class="comment">// 30</span></span><br><span class="line">	fmt.Println(f(<span class="number">30</span>)) <span class="comment">// 60</span></span><br><span class="line"></span><br><span class="line">	f1 := adder()</span><br><span class="line">	fmt.Println(f1(<span class="number">40</span>)) <span class="comment">// 40</span></span><br><span class="line">	fmt.Println(f1(<span class="number">50</span>))	<span class="comment">// 90</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  变量<code>f</code>是一个函数并且引用了其外部作用域中的<code>x</code>变量，此时<code>f</code>就是一个闭包。</p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeSuffixFunc</span><span class="params">(suffix <span class="keyword">string</span>)</span> <span class="title">func</span><span class="params">(<span class="keyword">string</span>)</span> <span class="title">string</span></span>  &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(name <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> !strings.HasSuffix(name,suffix) &#123;</span><br><span class="line">			<span class="keyword">return</span> name + suffix</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> name</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	jpgFunc := makeSuffixFunc(<span class="string">".jpg"</span>)</span><br><span class="line">	txtFunc := makeSuffixFunc(<span class="string">".txt"</span>)</span><br><span class="line">	fmt.Println(jpgFunc(<span class="string">"test"</span>))</span><br><span class="line">	fmt.Println(txtFunc(<span class="string">"test"</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>defer语句</p>
+<ul>
+<li><p>Go语言中的<code>defer</code>语句会将其后面跟随的语句进行延迟处理。在<code>defer</code>归属的函数即将返回时，将延迟处理的语句按<code>defer</code>定义的逆序进行执行，也就是说，先被<code>defer</code>的语句最后被执行，最后被<code>defer</code>的语句先执行。</p>
+</li>
+<li><p>首先得理解<code>return</code>的实现机制。在Go语言中，return分为给返回值赋值和RET指令两步。而<code>defer</code>语句执行的时机就在返回值赋值操作后。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">      fmt.Println(<span class="string">"start"</span>)</span><br><span class="line">      <span class="keyword">defer</span> fmt.Println(<span class="number">1</span>)</span><br><span class="line">      <span class="keyword">defer</span> fmt.Println(<span class="number">2</span>)</span><br><span class="line">      <span class="keyword">defer</span> fmt.Println(<span class="number">3</span>)</span><br><span class="line">      fmt.Println(<span class="string">"end"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//输出结果为 </span></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  start</span></span><br><span class="line"><span class="comment">  3</span></span><br><span class="line"><span class="comment">  2</span></span><br><span class="line"><span class="comment">  1</span></span><br><span class="line"><span class="comment">  end</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>由于<code>defer</code>语句延迟调用的特性，所以<code>defer</code>语句能 非常方便的处理资源释放问题。</li>
+</ul>
+</li>
+<li><p>经典案例</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">f1()函数使用了匿名返回值，匿名返回值时，return语句有一个赋值过程</span></span><br><span class="line"><span class="comment">将x赋值给返回值，例如  retValue = x</span></span><br><span class="line"><span class="comment">然后检查是否有defer，若有则执行</span></span><br><span class="line"><span class="comment">返回刚才创建的返回值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//defer操作是对x执行的，而不是retValue，所以f1()返回值是 5</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	x := <span class="number">5</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		x++</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">使用了命名返回值，返回值在方法定义时已经被定义，所以没有创建retValue的过程，</span></span><br><span class="line"><span class="comment">x就是retValue,则defer是对x执行的。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//返回值是6</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f2</span><span class="params">()</span> <span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		x++</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//返回值是 5</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f3</span><span class="params">()</span> <span class="params">(y <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	x := <span class="number">5</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		x++</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//返回值是 5</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f4</span><span class="params">()</span> <span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">		x++</span><br><span class="line">	&#125;(x)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(f1())</span><br><span class="line">	fmt.Println(f2())</span><br><span class="line">	fmt.Println(f3())</span><br><span class="line">	fmt.Println(f4())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>painc/recover</p>
+<ul>
+<li><p>Go语言中目前（Go1.12）是没有异常机制，但是使用<code>panic/recover</code>模式来处理错误。 <code>panic</code>可以在任何地方引发，但<code>recover</code>只有在<code>defer</code>调用的函数中有效。 首先来看一个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcA</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"func A"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcB</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="built_in">panic</span>(<span class="string">"panic in B"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcC</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"func C"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	funcA()</span><br><span class="line">	funcB()</span><br><span class="line">	funcC()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">A</span></span></span><br><span class="line"><span class="built_in">panic</span>: <span class="built_in">panic</span> in B</span><br><span class="line"></span><br><span class="line">goroutine <span class="number">1</span> [running]:</span><br><span class="line">main.funcB(...)</span><br><span class="line">        .../code/<span class="function"><span class="keyword">func</span>/<span class="title">main</span>.<span class="title">go</span>:12</span></span><br><span class="line">main.main()</span><br><span class="line">        .../code/<span class="function"><span class="keyword">func</span>/<span class="title">main</span>.<span class="title">go</span>:20 +0<span class="title">x98</span></span></span><br></pre></td></tr></table></figure>
+
+<p>程序运行期间<code>funcB</code>中引发了<code>panic</code>导致程序崩溃，异常退出了。这个时候我们就可以通过<code>recover</code>将程序恢复回来，继续往后执行。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcA</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"func A"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcB</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		err := <span class="built_in">recover</span>()</span><br><span class="line">		<span class="comment">//如果程序出出现了panic错误,可以通过recover恢复过来</span></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">"recover in B"</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="built_in">panic</span>(<span class="string">"panic in B"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">funcC</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"func C"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	funcA()</span><br><span class="line">	funcB()</span><br><span class="line">	funcC()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意：</p>
+<ul>
+<li><code>recover()</code>必须搭配<code>defer</code>使用。</li>
+<li><code>defer</code>一定要在可能引发<code>panic</code>的语句之前定义。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
 
       
@@ -278,6 +513,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/01/17/hello/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          hello
+        
+      </div>
+    </a>
   
   
     <a href="/2020/01/13/Apache2-%E9%85%8D%E7%BD%AECGI/" id="article-nav-older" class="article-nav-link-wrap">
