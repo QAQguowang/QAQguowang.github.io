@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="VIM 常用插件VIM 插件管理器 vim-plug是一个极简的vim插件管理器。  安装步骤  首先安装curl。  安装nodejs curl -sL install-node.now.sh&#x2F;lts | bash。  curl -fLo ~&#x2F;.vim&#x2F;autoload&#x2F;plug.vim --create-dirs https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;junegu">
 <meta property="article:published_time" content="2020-01-13T14:07:50.000Z">
-<meta property="article:modified_time" content="2020-02-09T14:02:45.220Z">
+<meta property="article:modified_time" content="2020-02-09T14:07:20.163Z">
 <meta property="article:author" content="QAQguowang">
 <meta property="article:tag" content="操作系统配置">
 <meta property="article:tag" content="linux">
@@ -238,7 +238,7 @@
 
 <p>此处的配置是C/C++的补全配置，如果提示没有clangd，安装clangd即可。若需要配置其他语言的补全</p>
 </li>
-<li><p>[各语言补全脚本配置][<a href="https://github.com/neoclide/coc.nvim/wiki/Language-servers]" target="_blank" rel="noopener">https://github.com/neoclide/coc.nvim/wiki/Language-servers]</a></p>
+<li><p><a href="https://github.com/neoclide/coc.nvim/wiki/Language-servers" target="_blank" rel="noopener">各语言补全脚本配置</a></p>
 </li>
 <li><p>也可以使用<code>languageserver</code>进行补全提示。</p>
 </li>
@@ -247,7 +247,7 @@
 <li><p>YouCompleteMe</p>
 <ul>
 <li><p>YouCompleteMe这个算是最难安装的插件不为过，网上的教程虽然很多，但是能成功的屈指可数，在我踩了无数的坑后，发现了一个可以一次性成功安装的办法。</p>
-<p>[YouCompleteMe插件安装][<a href="https://blog.csdn.net/tianminggenie/article/details/82899498]" target="_blank" rel="noopener">https://blog.csdn.net/tianminggenie/article/details/82899498]</a></p>
+<p><a href="https://blog.csdn.net/tianminggenie/article/details/82899498" target="_blank" rel="noopener">YouCompleteMe插件安装</a></p>
 <p>按照此博客的步骤，最终只需要配置<code>ycm_extra_conf.py</code>文件即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">找到 flags 字段，配置头文件目录。</span><br><span class="line">例如：</span><br><span class="line">  &#39;&#x2F;usr&#x2F;lib&#x2F;gcc&#x2F;x86_64-linux-gnu&#x2F;8&#x2F;&#39;,</span><br><span class="line">  &#39;-isystem&#39;,</span><br><span class="line">  &#39;&#x2F;usr&#x2F;include&#x2F;&#39;,</span><br><span class="line">  &#39;-isystem&#39;,</span><br><span class="line">  &#39;&#x2F;usr&#x2F;lib&#x2F;gcc&#x2F;x86_64-linux-gnu&#x2F;&#39;,</span><br><span class="line">  &#39;-isystem&#39;,</span><br><span class="line">  &#39;&#x2F;usr&#x2F;include&#x2F;c++&#x2F;7.5.0&#x2F;&#39;,</span><br><span class="line">  &#39;-isystem&#39;,</span><br><span class="line">  &#39;&#x2F;usr&#x2F;local&#x2F;include&#x2F;&#39;,</span><br></pre></td></tr></table></figure>
 
@@ -256,17 +256,17 @@
 </li>
 </ul>
 <h4 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h4><ul>
-<li><p>括号补全插件 [auto-pairs][<a href="https://github.com/jiangmiao/auto-pairs]" target="_blank" rel="noopener">https://github.com/jiangmiao/auto-pairs]</a></p>
+<li><p>括号补全插件 <a href="https://github.com/jiangmiao/auto-pairs" target="_blank" rel="noopener">auto-pairs</a></p>
 </li>
-<li><p>新的vim启动界面，还支持打开最近打开的文件。 [vim-startify][<a href="https://github.com/mhinz/vim-startify]" target="_blank" rel="noopener">https://github.com/mhinz/vim-startify]</a></p>
+<li><p>新的vim启动界面，还支持打开最近打开的文件。 <a href="https://github.com/mhinz/vim-startify" target="_blank" rel="noopener">vim-startify</a></p>
 </li>
-<li><p>状态栏 [vim-airline][<a href="https://github.com/vim-airline/vim-airline]" target="_blank" rel="noopener">https://github.com/vim-airline/vim-airline]</a></p>
+<li><p>状态栏 <a href="https://github.com/vim-airline/vim-airline" target="_blank" rel="noopener">vim-airline</a></p>
 </li>
-<li><p>目录树 [nerdtree][<a href="https://github.com/preservim/nerdtree]" target="_blank" rel="noopener">https://github.com/preservim/nerdtree]</a></p>
+<li><p>目录树 <a href="https://github.com/preservim/nerdtree" target="_blank" rel="noopener">nerdtree</a></p>
 </li>
-<li><p>标签导航 [tagbar][<a href="https://github.com/majutsushi/tagbar]" target="_blank" rel="noopener">https://github.com/majutsushi/tagbar]</a></p>
+<li><p>标签导航 <a href="https://github.com/majutsushi/tagbar" target="_blank" rel="noopener">tagbar</a></p>
 </li>
-<li><p>标签列表  [taglist][<a href="https://github.com/vim-scripts/taglist.vim]" target="_blank" rel="noopener">https://github.com/vim-scripts/taglist.vim]</a></p>
+<li><p>标签列表  <a href="https://github.com/vim-scripts/taglist.vim" target="_blank" rel="noopener">taglist</a></p>
 </li>
 </ul>
 
